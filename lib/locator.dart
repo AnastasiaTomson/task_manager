@@ -1,8 +1,11 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_manager/bloc/authentication/authentication_bloc.dart';
 import 'package:task_manager/bloc/todo_item/todo_item_bloc.dart';
+import 'package:task_manager/domain/interface/auth_repository.dart';
 import 'package:task_manager/domain/interface/todo_item_repository.dart';
+import 'package:task_manager/repository/auth_repository_impl.dart';
 import 'package:task_manager/repository/todo_item_repository_impl.dart';
 import 'package:task_manager/services/todo_item_service.dart';
 
@@ -20,7 +23,9 @@ Future<void> setupLocator() async {
 
   // Repositories
   locator.registerLazySingleton<TodoItemRepository>(() => TodoItemRepositoryImpl());
+  locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
 
   // Bloc
   locator.registerLazySingleton(() => TodoItemBloc());
+  locator.registerLazySingleton(() => AuthenticationBloc());
 }

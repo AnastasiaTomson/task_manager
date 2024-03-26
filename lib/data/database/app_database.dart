@@ -5,7 +5,6 @@ import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:task_manager/data/database/todo_list_table.dart';
-import 'package:task_manager/domain/models/task.dart';
 
 part 'app_database.g.dart';
 
@@ -21,7 +20,7 @@ class AppDb extends _$AppDb {
         .write(TodoItemsCompanion(status: Value(status)));
   }
 
-  Future<List<TodoItem>> getAllTodoItems() => select(todoItems).get();
+  Future<List<TodoItem>> getAllTodoItems() => (select(todoItems)).get();
 
   Future<int> insertNewTodoItem(String title, String? content) async {
     final companion = TodoItemsCompanion.insert(
